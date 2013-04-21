@@ -649,11 +649,7 @@ static void update_sleep_time(struct timespec t)
  */
 static void __timekeeping_inject_sleeptime(struct timespec *delta)
 {
-<<<<<<< HEAD
-	if (!timespec_valid(delta)) {
-=======
 	if (!timespec_valid_strict(delta)) {
->>>>>>> b59923b... Linux 3.0.44
 		printk(KERN_WARNING "__timekeeping_inject_sleeptime: Invalid "
 					"sleep delta value!\n");
 		return;
@@ -1057,7 +1053,7 @@ void get_monotonic_boottime(struct timespec *ts)
 	} while (read_seqretry(&xtime_lock, seq));
 
 	set_normalized_timespec(ts, ts->tv_sec + tomono.tv_sec + sleep.tv_sec,
-			ts->tv_nsec + tomono.tv_nsec + sleep.tv_nsec + nsecs);
+		(s64)ts->tv_nsec + tomono.tv_nsec + sleep.tv_nsec + nsecs);
 }
 EXPORT_SYMBOL_GPL(get_monotonic_boottime);
 

@@ -371,14 +371,14 @@ uint32_t global_pvs; /*  This code is temporary code */
 			{\
 				.src = MSM_BUS_MASTER_AMPSS_M0, \
 				.dst = MSM_BUS_SLAVE_EBI_CH0, \
-				.ib = (_bw) * 1000000UL, \
-				.ab = (_bw) *  100000UL, \
+				.ib = (_bw) * 1000000ULL, \
+				.ab = (_bw) *  100000ULL, \
 			}, \
 			{ \
 				.src = MSM_BUS_MASTER_AMPSS_M1, \
 				.dst = MSM_BUS_SLAVE_EBI_CH0, \
-				.ib = (_bw) * 1000000UL, \
-				.ab = (_bw) *  100000UL, \
+				.ib = (_bw) * 1000000ULL, \
+				.ab = (_bw) *  100000ULL, \
 			}, \
 		}, \
 		.num_paths = 2, \
@@ -769,17 +769,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_slow[] = {
 	{ 1, {   918000, HFPLL, 1, 0, 0x22 }, L2(7),  1100000 },
 	{ 0, {   972000, HFPLL, 1, 0, 0x24 }, L2(7),  1125000 },
 	{ 1, {  1026000, HFPLL, 1, 0, 0x26 }, L2(7),  1125000 },
-<<<<<<< HEAD
-	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(16), 1175000 },
-	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(16), 1175000 },
-	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(16), 1200000 },
-	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(16), 1200000 },
-	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(16), 1225000 },
-	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(16), 1225000 },
-	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1237500 },
-	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1237500 },
-	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1250000 },
-=======
 	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1175000 },
 	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1175000 },
 	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1200000 },
@@ -796,7 +785,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_slow[] = {
 	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1350000 },
 #endif
 #endif
->>>>>>> 6b4eb26... overclocking: CPU overclocking up to 1.836 GHz
 	{ 0, { 0 } }
 };
 
@@ -815,17 +803,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_nom[] = {
 	{ 1, {   918000, HFPLL, 1, 0, 0x22 }, L2(7),  1050000 },
 	{ 0, {   972000, HFPLL, 1, 0, 0x24 }, L2(7),  1075000 },
 	{ 1, {  1026000, HFPLL, 1, 0, 0x26 }, L2(7),  1075000 },
-<<<<<<< HEAD
-	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(16), 1125000 },
-	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(16), 1125000 },
-	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(16), 1150000 },
-	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(16), 1150000 },
-	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(16), 1175000 },
-	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(16), 1175000 },
-	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1187500 },
-	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1187500 },
-	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1200000 },
-=======
 	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1125000 },
 	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1125000 },
 	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1150000 },
@@ -842,7 +819,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_nom[] = {
 	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1325000 },
 #endif
 #endif
->>>>>>> 6b4eb26... overclocking: CPU overclocking up to 1.836 GHz
 	{ 0, { 0 } }
 };
 
@@ -861,17 +837,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 	{ 1, {   918000, HFPLL, 1, 0, 0x22 }, L2(7),  1000000 },
 	{ 0, {   972000, HFPLL, 1, 0, 0x24 }, L2(7),  1025000 },
 	{ 1, {  1026000, HFPLL, 1, 0, 0x26 }, L2(7),  1025000 },
-<<<<<<< HEAD
-	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(16), 1075000 },
-	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(16), 1075000 },
-	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(16), 1100000 },
-	{ 1, {  1242000, HFPLL, 1, 0, 0x2E }, L2(16), 1100000 },
-	{ 0, {  1296000, HFPLL, 1, 0, 0x30 }, L2(16), 1125000 },
-	{ 1, {  1350000, HFPLL, 1, 0, 0x32 }, L2(16), 1125000 },
-	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1137500 },
-	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1137500 },
-	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(16), 1150000 },
-=======
 	{ 0, {  1080000, HFPLL, 1, 0, 0x28 }, L2(19), 1075000 },
 	{ 1, {  1134000, HFPLL, 1, 0, 0x2A }, L2(19), 1075000 },
 	{ 0, {  1188000, HFPLL, 1, 0, 0x2C }, L2(19), 1100000 },
@@ -888,7 +853,6 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 	{ 1, {  1836000, HFPLL, 1, 0, 0x44 }, L2(19), 1275000 },
 #endif
 #endif
->>>>>>> 6b4eb26... overclocking: CPU overclocking up to 1.836 GHz
 	{ 0, { 0 } }
 };
 
@@ -1756,6 +1720,7 @@ static struct notifier_block __cpuinitdata acpuclock_cpu_notifier = {
 	.notifier_call = acpuclock_cpu_callback,
 };
 
+#ifdef CONFIG_ENABLE_MIN_KRAIT_VOLTAGE
 static const int krait_needs_vmin(void)
 {
 	switch (read_cpuid_id()) {
@@ -1774,6 +1739,7 @@ static void kraitv2_apply_vmin(struct acpu_level *tbl)
 		if (tbl->vdd_core < 1150000)
 			tbl->vdd_core = 1150000;
 }
+#endif
 
 #ifdef CONFIG_SEC_L1_DCACHE_PANIC_CHK
 uint32_t global_sec_pvs_value;
@@ -1908,8 +1874,10 @@ static struct acpu_level * __init select_freq_plan(void)
 	} else {
 		BUG();
 	}
+#ifdef CONFIG_ENABLE_MIN_KRAIT_VOLTAGE
 	if (krait_needs_vmin())
 		kraitv2_apply_vmin(acpu_freq_tbl);
+#endif
 
 	/* Find the max supported scaling frequency. */
 	for (l = acpu_freq_tbl; l->speed.khz != 0; l++)
