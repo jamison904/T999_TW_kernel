@@ -224,19 +224,6 @@ static int __cpuinit msm_cpufreq_init(struct cpufreq_policy *policy)
 	return 0;
 }
 
-#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
-extern bool lmf_screen_state;
-#endif
-
-static void msm_cpu_early_suspend(struct early_suspend *h)
-{
-
-#ifdef CONFIG_CPU_FREQ_GOV_INTELLIDEMAND
-	lmf_screen_state = false;
-#endif
-
-}
-
 static void msm_cpu_late_resume(struct early_suspend *h)
 {
 
