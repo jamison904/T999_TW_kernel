@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Linux/arm 3.0.66 Kernel Configuration
+# Linux/arm 3.0.68 Kernel Configuration
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -588,7 +588,12 @@ CONFIG_SPLIT_PTLOCK_CPUS=4
 CONFIG_ZONE_DMA_FLAG=0
 CONFIG_BOUNCE=y
 CONFIG_VIRT_TO_BUS=y
+<<<<<<< HEAD:arch/arm/configs/InfamousOC_config
 # CONFIG_KSM is not set
+=======
+CONFIG_KSM=y
+CONFIG_UKSM=y
+>>>>>>> f941a00... Add UKSM 0.1.2:arch/arm/configs/KT747_d2att_defconfig
 CONFIG_DEFAULT_MMAP_MIN_ADDR=4096
 CONFIG_CLEANCACHE=y
 # CONFIG_ARCH_MEMORY_PROBE is not set
