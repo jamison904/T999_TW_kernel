@@ -1831,7 +1831,7 @@ static void msm_otg_init_sm(struct msm_otg *motg)
 #endif
 			}
 			if (pdata->smb347s) {
-				pr_info("msm_otg_init_sm, smb347s\n");
+				pr_info("%s: smb347s\n", __func__);
 				if (otgsc & OTGSC_BSV)
 					set_bit(B_SESS_VLD, &motg->inputs);
 				else
@@ -2231,11 +2231,14 @@ void msm_otg_set_charging_state(bool enable)
 	if (enable) {
 		motg->chg_type = USB_DCP_CHARGER;
 		motg->chg_state = USB_CHG_STATE_DETECTED;
-		schedule_work(&motg->sm_work);
 	} else {
 		motg->chg_state = USB_CHG_STATE_UNDEFINED;
 		motg->chg_type = USB_INVALID_CHARGER;
+		if (test_bit(B_SESS_VLD, &motg->inputs))
+			clear_bit(B_SESS_VLD, &motg->inputs);
 	}
+
+	schedule_work(&motg->sm_work);
 }
 EXPORT_SYMBOL_GPL(msm_otg_set_charging_state);
 
