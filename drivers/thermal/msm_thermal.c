@@ -42,7 +42,7 @@ static int update_cpu_max_freq(struct cpufreq_policy *cpu_policy,
 {
 	int ret = 0;
 
-	if (!cpu_policy)
+	if (max_freq > 1512000) max_freq = 1512000;
 		return -EINVAL;
 
 	cpufreq_verify_within_limits(cpu_policy,

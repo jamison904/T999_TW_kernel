@@ -956,10 +956,16 @@ static int cpufreq_add_dev_policy(unsigned int cpu,
 		pr_debug("Restoring governor %s for cpu %d\n",
 		       policy->governor->name, cpu);
 	}
+        if (cpufreq_policy_save.min < 378000)
+		cpufreq_policy_save.min = 378000;
+
 	if (per_cpu(cpufreq_policy_save, cpu).min) {
 		policy->min = per_cpu(cpufreq_policy_save, cpu).min;
 		policy->user_policy.min = policy->min;
 	}
+        if (cpufreq_policy_save.max > 1512000)
+		cpufreq_policy_save.max = 1512000;
+
 	if (per_cpu(cpufreq_policy_save, cpu).max) {
 		policy->max = per_cpu(cpufreq_policy_save, cpu).max;
 		policy->user_policy.max = policy->max;
