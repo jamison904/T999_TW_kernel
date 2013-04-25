@@ -27,6 +27,7 @@
 #endif
 #include <linux/string.h>
 #include <linux/delay.h>
+#include <linux/slide2wake.h>
 
 #define PON_CNTL_1 0x1C
 #define PON_CNTL_PULL_UP BIT(7)
@@ -160,6 +161,8 @@ static int __devinit pmic8xxx_pwrkey_probe(struct platform_device *pdev)
 	pwr->name = "sec_powerkey";
 	pwr->phys = "pmic8xxx_pwrkey/input0";
 	pwr->dev.parent = &pdev->dev;
+
+	slide2wake_setdev(pwr);
 
 	delay = (pdata->kpd_trigger_delay_us << 6) / USEC_PER_SEC;
 	delay = ilog2(delay);

@@ -36,6 +36,7 @@
 #include <linux/mfd/pmic8058.h>
 #include <linux/input.h>
 #include <linux/sii9234.h>
+#include <linux/slide2wake.h>
 
 /* FSA9480 I2C registers */
 #define FSA9485_REG_DEVID		0x01
@@ -631,6 +632,8 @@ static int fsa9485_detect_dev(struct fsa9485_usbsw *usbsw)
 	val2 = device_type >> 8;
 	adc = i2c_smbus_read_byte_data(client, FSA9485_REG_ADC);
 
+	dev_info(&client->dev, "dev1: 0x%x, dev2: 0x%x\n", val1, val2);
+
 	if (usbsw->dock_attached)
 		pdata->dock_cb(FSA9485_DETACHED_DOCK);
 
@@ -643,17 +646,17 @@ static int fsa9485_detect_dev(struct fsa9485_usbsw *usbsw)
 
 	/* Attached */
 	if (val1 || val2) {
+		slide2wake_change(11);
 		/* USB */
 		if (val1 & DEV_USB || val2 & DEV_T2_USB_MASK) {
 			dev_info(&client->dev, "usb connect\n");
 
 			if (pdata->usb_cb) {
 				if (pdata->charger_cb && force_fast_charge != 0) {
-				  dev_info(&client->dev, "[imoseyon] fastcharge\n");
-				  pdata->charger_cb(FSA9485_ATTACHED);
+					dev_info(&client->dev, "[imoseyon] fastcharge\n");
+					pdata->charger_cb(FSA9485_ATTACHED);
 				} else pdata->usb_cb(FSA9485_ATTACHED);
 			}
-
 			if (usbsw->mansw) {
 				ret = i2c_smbus_write_byte_data(client,
 				FSA9485_REG_MANSW1, usbsw->mansw);
@@ -824,14 +827,17 @@ static int fsa9485_detect_dev(struct fsa9485_usbsw *usbsw)
 		}
 	/* Detached */
 	} else {
+		slide2wake_change(10);
 		/* USB */
 		if (usbsw->dev1 & DEV_USB ||
 				usbsw->dev2 & DEV_T2_USB_MASK) {
 			if (pdata->usb_cb) {
-			  if (pdata->charger_cb && force_fast_charge != 0) {
-                            dev_info(&client->dev, "[imoseyon] fastcharge detached\n");
-			    pdata->charger_cb(FSA9485_DETACHED); 
-			  } else pdata->usb_cb(FSA9485_DETACHED);
+				if (pdata->charger_cb && force_fast_charge != 0) {
+					dev_info(&client->dev, "[imoseyon] fastcharge detached\n");
+					pdata->charger_cb(FSA9485_DETACHED);
+				}
+				else
+					pdata->usb_cb(FSA9485_DETACHED);
 			}
 		} else if (usbsw->dev1 & DEV_USB_CHG) {
 			if (pdata->usb_cdp_cb)

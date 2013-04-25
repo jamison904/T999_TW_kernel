@@ -1876,6 +1876,7 @@ static inline void hci_auth_complete_evt(struct hci_dev *hdev, struct sk_buff *s
 	struct hci_conn *conn;
 
 	BT_DBG("%s status %d", hdev->name, ev->status);
+	pr_info("hci_auth_complete_evt: %s\n", hdev->dev_name);
 
 	hci_dev_lock(hdev);
 
@@ -3429,6 +3430,8 @@ static inline void hci_le_meta_evt(struct hci_dev *hdev, struct sk_buff *skb)
 	}
 }
 
+extern void set_bluetooth_state(unsigned int val, __u8	dev_name[248]);
+
 void hci_event_packet(struct hci_dev *hdev, struct sk_buff *skb)
 {
 	struct hci_event_hdr *hdr = (void *) skb->data;
@@ -3447,18 +3450,24 @@ void hci_event_packet(struct hci_dev *hdev, struct sk_buff *skb)
 
 	case HCI_EV_CONN_COMPLETE:
 		hci_conn_complete_evt(hdev, skb);
+		pr_info("HCI_EV_CONN_COMPLETE\n");
 		break;
 
 	case HCI_EV_CONN_REQUEST:
 		hci_conn_request_evt(hdev, skb);
+		pr_info("HCI_EV_CONN_REQUEST\n");
 		break;
 
 	case HCI_EV_DISCONN_COMPLETE:
 		hci_disconn_complete_evt(hdev, skb);
+		pr_info("HCI_EV_DISCONN_COMPLETE\n");
+		set_bluetooth_state(0, hdev->dev_name);
 		break;
 
 	case HCI_EV_AUTH_COMPLETE:
 		hci_auth_complete_evt(hdev, skb);
+		pr_info("HCI_EV_AUTH_COMPLETE\n");
+		set_bluetooth_state(1, hdev->dev_name);
 		break;
 
 	case HCI_EV_REMOTE_NAME:
@@ -3539,6 +3548,7 @@ void hci_event_packet(struct hci_dev *hdev, struct sk_buff *skb)
 
 	case HCI_EV_SYNC_CONN_COMPLETE:
 		hci_sync_conn_complete_evt(hdev, skb);
+		pr_info("HCI_SYNC_CONN_COMPLETE\n");
 		break;
 
 	case HCI_EV_SYNC_CONN_CHANGED:
@@ -3575,6 +3585,7 @@ void hci_event_packet(struct hci_dev *hdev, struct sk_buff *skb)
 
 	case HCI_EV_SIMPLE_PAIR_COMPLETE:
 		hci_simple_pair_complete_evt(hdev, skb);
+		pr_info("HCI_EV_SIMPLE_PAIR_COMPLETE\n");
 		break;
 
 	case HCI_EV_REMOTE_HOST_FEATURES:
