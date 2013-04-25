@@ -164,7 +164,7 @@ static unsigned int get_nr_run_avg(void)
 
 #define DEF_START_DELAY				(0)
 
-#define FREQ_FOR_RESPONSIVENESS			(400000)
+#define FREQ_FOR_RESPONSIVENESS			(918000)
 
 #define HOTPLUG_DOWN_INDEX			(0)
 #define HOTPLUG_UP_INDEX			(1)
@@ -185,10 +185,10 @@ static int hotplug_rq[4][2] = {
 };
 
 static int hotplug_freq[4][2] = {
-	{0, 500000},
-	{200000, 500000},
-	{200000, 500000},
-	{200000, 0}
+	{0, 540000},
+	{378000, 540000},
+	{378000, 540000},
+	{378000, 0}
 };
 #else
 static int hotplug_rq[4][2] = {
@@ -196,10 +196,10 @@ static int hotplug_rq[4][2] = {
 };
 
 static int hotplug_freq[4][2] = {
-	{0, 500000},
-	{200000, 500000},
-	{200000, 500000},
-	{200000, 0}
+	{0, 540000},
+	{378000, 540000},
+	{378000, 540000},
+	{378000, 0}
 };
 #endif
 
