@@ -588,12 +588,9 @@ CONFIG_SPLIT_PTLOCK_CPUS=4
 CONFIG_ZONE_DMA_FLAG=0
 CONFIG_BOUNCE=y
 CONFIG_VIRT_TO_BUS=y
-<<<<<<< HEAD:arch/arm/configs/Infamous_config
 # CONFIG_KSM is not set
-=======
 CONFIG_KSM=y
 CONFIG_UKSM=y
->>>>>>> f941a00... Add UKSM 0.1.2:arch/arm/configs/KT747_d2spr_defconfig
 CONFIG_DEFAULT_MMAP_MIN_ADDR=4096
 CONFIG_CLEANCACHE=y
 # CONFIG_ARCH_MEMORY_PROBE is not set
