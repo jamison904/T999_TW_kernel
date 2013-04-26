@@ -29,7 +29,6 @@
 #include <linux/version.h>
 
 #include <asm/div64.h>
-#include "kt_save_sched.h"
 
 enum vr_data_dir {
 ASYNC,

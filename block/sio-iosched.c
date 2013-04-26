@@ -19,7 +19,6 @@
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/version.h>
-#include "kt_save_sched.h"
 
 enum { ASYNC, SYNC };
 

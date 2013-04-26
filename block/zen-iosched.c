@@ -13,7 +13,6 @@
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/init.h>
-#include "kt_save_sched.h"
 
 enum zen_data_dir { ASYNC, SYNC };
 

@@ -26,7 +26,6 @@
 #include <linux/compiler.h>
 #include <linux/blktrace_api.h>
 #include <linux/jiffies.h>
-#include "kt_save_sched.h"
 
 /*
  * enum row_queue_prio - Priorities of the ROW queues

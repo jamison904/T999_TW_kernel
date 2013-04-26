@@ -15,7 +15,6 @@
 #include <linux/ioprio.h>
 #include <linux/blktrace_api.h>
 #include "cfq.h"
-#include "kt_save_sched.h"
 
 /*
  * tunables
