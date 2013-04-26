@@ -43,12 +43,6 @@
 static DEFINE_SPINLOCK(elv_list_lock);
 static LIST_HEAD(elv_list);
 
-<<<<<<< HEAD
-=======
-static struct request_queue *globalq[5];
-static unsigned int queue_size = 0;
-
->>>>>>> a0f5944... Scheduler screen OFF profile:  Added in save values to all schedulers to maintain them while screen is OFF so they can be reset when screen comes back ON
 /*
  * Merge hash stuff.
  */
@@ -1032,29 +1026,6 @@ fail_register:
 	return err;
 }
 
-<<<<<<< HEAD
-=======
-int elevator_change_relay(const char *name, int screen_status)
-{
-	int i = 0;
-	load_prev_screen_on = screen_status;
-	pr_alert("CHANGE_SCHEDULER0-%d\n", load_prev_screen_on);
-	for (i = 0; i < queue_size; i++)
-	{
-		if (i != 1 && i != 2)
-			elevator_change(globalq[i], name);
-	}
-	load_prev_screen_on = 0;
-	return 0;
-}
-
-int isload_prev_screen_on(void)
-{
-	return load_prev_screen_on;
-}
-
-extern void set_cur_sched(const char *name);
->>>>>>> a0f5944... Scheduler screen OFF profile:  Added in save values to all schedulers to maintain them while screen is OFF so they can be reset when screen comes back ON
 /*
  * Switch this queue to the given IO scheduler.
  */
