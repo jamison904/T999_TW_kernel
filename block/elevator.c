@@ -39,7 +39,6 @@
 #include <trace/events/block.h>
 
 #include "blk.h"
-#include "kt_save_sched.h"
 
 static DEFINE_SPINLOCK(elv_list_lock);
 static LIST_HEAD(elv_list);
