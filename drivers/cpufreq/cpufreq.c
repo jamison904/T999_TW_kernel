@@ -443,12 +443,20 @@ static ssize_t show_##file_name				\
 	return sprintf(buf, "%u\n", policy->object);	\
 }
 
+#define findmax( a, b ) ( ((a) > (b)) ? (a) : (b) )
+
 show_one(cpuinfo_min_freq, cpuinfo.min_freq);
 show_one(cpuinfo_max_freq, cpuinfo.max_freq);
 show_one(cpuinfo_transition_latency, cpuinfo.transition_latency);
 show_one(scaling_min_freq, min);
 show_one(scaling_max_freq, max);
 show_one(scaling_cur_freq, cur);
+
+static ssize_t show_thermal_max_freq(struct cpufreq_policy *policy, char *buf)
+{
+	return sprintf(buf, "%u\n", findmax(policy->max, 1512000));
+}
+
 #if defined(__MP_DECISION_PATCH__)
 show_one(cpu_utilization, utils);
 #endif
@@ -775,6 +783,7 @@ static ssize_t store_vdd_levels(struct kobject *a, struct attribute *b, const ch
 cpufreq_freq_attr_ro_perm(cpuinfo_cur_freq, 0400);
 cpufreq_freq_attr_ro(cpuinfo_min_freq);
 cpufreq_freq_attr_ro(cpuinfo_max_freq);
+cpufreq_freq_attr_ro(thermal_max_freq);
 cpufreq_freq_attr_ro(cpuinfo_transition_latency);
 cpufreq_freq_attr_ro(scaling_available_governors);
 cpufreq_freq_attr_ro(scaling_driver);
@@ -796,6 +805,7 @@ define_one_global_rw(vdd_levels);
 static struct attribute *default_attrs[] = {
 	&cpuinfo_min_freq.attr,
 	&cpuinfo_max_freq.attr,
+	&thermal_max_freq.attr,
 	&cpuinfo_transition_latency.attr,
 	&scaling_min_freq.attr,
 	&scaling_max_freq.attr,
@@ -958,7 +968,6 @@ static int cpufreq_add_dev_policy(unsigned int cpu,
 #ifdef CONFIG_SMP
 	unsigned long flags;
 	unsigned int j;
-/*
 #ifdef CONFIG_HOTPLUG_CPU
 	struct cpufreq_governor *gov;
 
@@ -985,7 +994,7 @@ static int cpufreq_add_dev_policy(unsigned int cpu,
 	pr_debug("Restoring CPU%d min %d and max %d\n",
 		cpu, policy->min, policy->max);
 #endif
-*/
+
 	for_each_cpu(j, policy->cpus) {
 		struct cpufreq_policy *managed_policy;
 
